@@ -2,20 +2,21 @@
 {
     public static long Value(string fileName)
     {
+        var now = DateTime.UtcNow.Ticks;
         string instructions;
         var nodes = new Dictionary<string, Node>();
-
 
         using (var sr = new StreamReader(fileName))
         {
             var str = sr.ReadToEnd();
-            var strMat = str.Split("\r\n").ToList();
+            var strList = str.Split("\r\n").ToList();
 
-            instructions = strMat[0];
+            now = DateTime.UtcNow.Ticks;
+            instructions = strList[0];
 
-            for (var i = 2; i < strMat.Count; i++)
+            for (var i = 2; i < strList.Count; i++)
             {
-                var parts = strMat[i].Split(' ', '=', '(', ')', ',').Where(x => x.Length > 1).ToList();
+                var parts = strList[i].Split(' ', '=', '(', ')', ',').Where(x => x.Length > 1).ToList();
 
                 var newNode = new Node { Left = parts[1], Right = parts[2] };
 
@@ -53,7 +54,11 @@
             }
         }
 
-        return GFG.lcm_of_array_elements(stepCounts.ToArray());
+        var answer = GFG.lcm_of_array_elements(stepCounts.ToArray());
+
+        Console.WriteLine($"{nameof(Part2)} {fileName}: {(DateTime.UtcNow.Ticks - now) / 10000} ms");
+
+        return answer;
     }
 
     class Node

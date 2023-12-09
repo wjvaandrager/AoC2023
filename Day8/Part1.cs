@@ -2,6 +2,7 @@
 {
     public static long Value(string fileName)
     {
+        var now = DateTime.UtcNow.Ticks;
         string instructions;
         var nodes = new Dictionary<string, Node>();
 
@@ -10,13 +11,14 @@
         using (var sr = new StreamReader(fileName))
         {
             var str = sr.ReadToEnd();
-            var strMat = str.Split("\r\n").ToList();
+            var strList = str.Split("\r\n").ToList();
 
-            instructions = strMat[0];
+            now = DateTime.UtcNow.Ticks;
+            instructions = strList[0];
 
-            for (var i = 2; i < strMat.Count; i++)
+            for (var i = 2; i < strList.Count; i++)
             {
-                var parts = strMat[i].Split(' ', '=', '(', ')', ',').Where(x => x.Length > 1).ToList();
+                var parts = strList[i].Split(' ', '=', '(', ')', ',').Where(x => x.Length > 1).ToList();
 
                 var newNode = new Node { Left = parts[1], Right = parts[2] };
 
@@ -34,7 +36,11 @@
 
                 var nextNode = c == 'L' ? node.Left : node.Right;
 
-                if (nextNode == "ZZZ") return steps;
+                if (nextNode == "ZZZ")
+                {
+                    Console.WriteLine($"{nameof(Part1)} {fileName}: {(DateTime.UtcNow.Ticks - now) / 10000} ms");
+                    return steps;
+                }
 
                 node = nodes[nextNode];
             }

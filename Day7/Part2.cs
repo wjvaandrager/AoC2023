@@ -21,11 +21,11 @@
         using (var sr = new StreamReader(fileName))
         {
             var str = sr.ReadToEnd();
-            var strMat = str.Split("\r\n").ToList();
-            for (var i = 0; i < strMat.Count; i++)
+            var strList = str.Split("\r\n").ToList();
+            for (var i = 0; i < strList.Count; i++)
             {
-                var hand = strMat[i].Split(" ")[0].Trim();
-                var bid = strMat[i].Split(" ")[1].Trim();
+                var hand = strList[i].Split(" ")[0].Trim();
+                var bid = strList[i].Split(" ")[1].Trim();
                 var card = new Card(hand, int.Parse(bid));
 
 

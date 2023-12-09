@@ -12,12 +12,12 @@ public static class FileImporter
         using (var sr = new StreamReader(fileName))
         {
             var str = sr.ReadToEnd();
-            var strMat = str.Split("\r\n");
+            var strList = str.Split("\r\n");
             var number = string.Empty;
 
-            for (var i = 0; i < strMat.Length; i++)
+            for (var i = 0; i < strList.Length; i++)
             {
-                var row = strMat[i]; 
+                var row = strList[i]; 
                 for (var j = 0; j < row.Length; j++)
                 {
                     var c = row[j]; 
@@ -79,12 +79,12 @@ public static class FileImporter
         using (var sr = new StreamReader(fileName))
         {
             var str = sr.ReadToEnd();
-            var strMat = str.Split("\r\n");
+            var strList = str.Split("\r\n");
             var number = string.Empty;
 
-            for (var i = 0; i < strMat.Length; i++)
+            for (var i = 0; i < strList.Length; i++)
             {
-                var row = strMat[i];
+                var row = strList[i];
                 for (var j = 0; j < row.Length; j++)
                 {
                     var c = row[j];

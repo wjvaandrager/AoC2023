@@ -12,10 +12,10 @@ public static class Part2
         using (var sr = new StreamReader(fileName))
         {
             var str = sr.ReadToEnd();
-            var strMat = str.Split("\r\n");
-            var raceTime = strMat[0].Split(":")[1].Trim().Split(" ").Where(x => !string.IsNullOrEmpty(x)).Aggregate((x, y) => x + y).ToString();
+            var strList = str.Split("\r\n");
+            var raceTime = strList[0].Split(":")[1].Trim().Split(" ").Where(x => !string.IsNullOrEmpty(x)).Aggregate((x, y) => x + y).ToString();
             raceTimes.Add(long.Parse(raceTime));
-            var raceDuration = strMat[1].Split(":")[1].Trim().Split(" ").Where(x => !string.IsNullOrEmpty(x)).Aggregate((x, y) => x + y).ToString();
+            var raceDuration = strList[1].Split(":")[1].Trim().Split(" ").Where(x => !string.IsNullOrEmpty(x)).Aggregate((x, y) => x + y).ToString();
             raceDurations.Add(long.Parse(raceDuration));
 
             for (var i = 0; i < raceTimes.Count; i++)

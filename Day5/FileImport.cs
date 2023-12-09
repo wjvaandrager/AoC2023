@@ -10,16 +10,16 @@ public static class FileImporter
         using (var sr = new StreamReader(fileName))
         {
             var str = sr.ReadToEnd();
-            var strMat = str.Split("\r\n");
-            var seedParts = strMat[0].Split(": ")[1].Split(" ").Select(long.Parse).ToList();
+            var strList = str.Split("\r\n");
+            var seedParts = strList[0].Split(": ")[1].Split(" ").Select(long.Parse).ToList();
             for( var i = 0; i < seedParts.Count; i+=2)
             {
                 seeds.Add((seedParts[i], seedParts[i] + seedParts[i + 1] - 1));
             }
 
-            for (var i = 2; i < strMat.Length; i++)
+            for (var i = 2; i < strList.Length; i++)
             {
-                var line = strMat[i];
+                var line = strList[i];
                 if (string.IsNullOrEmpty(line))
                 {
                     number++;

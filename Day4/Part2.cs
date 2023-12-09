@@ -10,10 +10,10 @@
         using (var sr = new StreamReader(fileName))
         {
             var str = sr.ReadToEnd();
-            var strMat = str.Split("\r\n").ToList();
-            for (var i = 0; i < strMat.Count; i++)
+            var strList = str.Split("\r\n").ToList();
+            for (var i = 0; i < strList.Count; i++)
             {
-                var parts = strMat[i].Split(":")[1].Trim().Split("|");
+                var parts = strList[i].Split(":")[1].Trim().Split("|");
                 var nums = parts[0].Trim().Split(" ").Where(x => !string.IsNullOrEmpty(x)).Select(int.Parse).ToHashSet();
                 var cs = parts[1].Trim().Split(" ").Where(x => !string.IsNullOrEmpty(x)).Select(int.Parse).ToHashSet();
 
